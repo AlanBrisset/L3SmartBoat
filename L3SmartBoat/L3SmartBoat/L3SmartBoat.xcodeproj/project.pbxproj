@@ -1,0 +1,533 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		5C2318E11E82917E007A61BF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2318E01E82917E007A61BF /* main.m */; };
+		5C2318E41E82917E007A61BF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2318E31E82917E007A61BF /* AppDelegate.m */; };
+		5C2318E71E82917E007A61BF /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2318E61E82917E007A61BF /* RootViewController.m */; };
+		5C2318EA1E82917E007A61BF /* DataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2318E91E82917E007A61BF /* DataViewController.m */; };
+		5C2318ED1E82917E007A61BF /* ModelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2318EC1E82917E007A61BF /* ModelController.m */; };
+		5C2318F01E82917F007A61BF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C2318EE1E82917F007A61BF /* Main.storyboard */; };
+		5C2318F21E82917F007A61BF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5C2318F11E82917F007A61BF /* Assets.xcassets */; };
+		5C2318F51E82917F007A61BF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C2318F31E82917F007A61BF /* LaunchScreen.storyboard */; };
+		5C2319001E82917F007A61BF /* L3SmartBoatTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2318FF1E82917F007A61BF /* L3SmartBoatTests.m */; };
+		5C23190B1E82917F007A61BF /* L3SmartBoatUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C23190A1E82917F007A61BF /* L3SmartBoatUITests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		5C2318FC1E82917F007A61BF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5C2318D41E82917E007A61BF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5C2318DB1E82917E007A61BF;
+			remoteInfo = L3SmartBoat;
+		};
+		5C2319071E82917F007A61BF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5C2318D41E82917E007A61BF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5C2318DB1E82917E007A61BF;
+			remoteInfo = L3SmartBoat;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		5C2318DC1E82917E007A61BF /* L3SmartBoat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = L3SmartBoat.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5C2318E01E82917E007A61BF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		5C2318E21E82917E007A61BF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		5C2318E31E82917E007A61BF /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		5C2318E51E82917E007A61BF /* RootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		5C2318E61E82917E007A61BF /* RootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		5C2318E81E82917E007A61BF /* DataViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataViewController.h; sourceTree = "<group>"; };
+		5C2318E91E82917E007A61BF /* DataViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DataViewController.m; sourceTree = "<group>"; };
+		5C2318EB1E82917E007A61BF /* ModelController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModelController.h; sourceTree = "<group>"; };
+		5C2318EC1E82917E007A61BF /* ModelController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ModelController.m; sourceTree = "<group>"; };
+		5C2318EF1E82917F007A61BF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		5C2318F11E82917F007A61BF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		5C2318F41E82917F007A61BF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		5C2318F61E82917F007A61BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5C2318FB1E82917F007A61BF /* L3SmartBoatTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = L3SmartBoatTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5C2318FF1E82917F007A61BF /* L3SmartBoatTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = L3SmartBoatTests.m; sourceTree = "<group>"; };
+		5C2319011E82917F007A61BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5C2319061E82917F007A61BF /* L3SmartBoatUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = L3SmartBoatUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5C23190A1E82917F007A61BF /* L3SmartBoatUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = L3SmartBoatUITests.m; sourceTree = "<group>"; };
+		5C23190C1E82917F007A61BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		5C2318D91E82917E007A61BF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5C2318F81E82917F007A61BF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5C2319031E82917F007A61BF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		5C2318D31E82917E007A61BF = {
+			isa = PBXGroup;
+			children = (
+				5C2318DE1E82917E007A61BF /* L3SmartBoat */,
+				5C2318FE1E82917F007A61BF /* L3SmartBoatTests */,
+				5C2319091E82917F007A61BF /* L3SmartBoatUITests */,
+				5C2318DD1E82917E007A61BF /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		5C2318DD1E82917E007A61BF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5C2318DC1E82917E007A61BF /* L3SmartBoat.app */,
+				5C2318FB1E82917F007A61BF /* L3SmartBoatTests.xctest */,
+				5C2319061E82917F007A61BF /* L3SmartBoatUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5C2318DE1E82917E007A61BF /* L3SmartBoat */ = {
+			isa = PBXGroup;
+			children = (
+				5C2318E21E82917E007A61BF /* AppDelegate.h */,
+				5C2318E31E82917E007A61BF /* AppDelegate.m */,
+				5C2318E51E82917E007A61BF /* RootViewController.h */,
+				5C2318E61E82917E007A61BF /* RootViewController.m */,
+				5C2318E81E82917E007A61BF /* DataViewController.h */,
+				5C2318E91E82917E007A61BF /* DataViewController.m */,
+				5C2318EB1E82917E007A61BF /* ModelController.h */,
+				5C2318EC1E82917E007A61BF /* ModelController.m */,
+				5C2318EE1E82917F007A61BF /* Main.storyboard */,
+				5C2318F11E82917F007A61BF /* Assets.xcassets */,
+				5C2318F31E82917F007A61BF /* LaunchScreen.storyboard */,
+				5C2318F61E82917F007A61BF /* Info.plist */,
+				5C2318DF1E82917E007A61BF /* Supporting Files */,
+			);
+			path = L3SmartBoat;
+			sourceTree = "<group>";
+		};
+		5C2318DF1E82917E007A61BF /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				5C2318E01E82917E007A61BF /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		5C2318FE1E82917F007A61BF /* L3SmartBoatTests */ = {
+			isa = PBXGroup;
+			children = (
+				5C2318FF1E82917F007A61BF /* L3SmartBoatTests.m */,
+				5C2319011E82917F007A61BF /* Info.plist */,
+			);
+			path = L3SmartBoatTests;
+			sourceTree = "<group>";
+		};
+		5C2319091E82917F007A61BF /* L3SmartBoatUITests */ = {
+			isa = PBXGroup;
+			children = (
+				5C23190A1E82917F007A61BF /* L3SmartBoatUITests.m */,
+				5C23190C1E82917F007A61BF /* Info.plist */,
+			);
+			path = L3SmartBoatUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		5C2318DB1E82917E007A61BF /* L3SmartBoat */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5C23190F1E82917F007A61BF /* Build configuration list for PBXNativeTarget "L3SmartBoat" */;
+			buildPhases = (
+				5C2318D81E82917E007A61BF /* Sources */,
+				5C2318D91E82917E007A61BF /* Frameworks */,
+				5C2318DA1E82917E007A61BF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = L3SmartBoat;
+			productName = L3SmartBoat;
+			productReference = 5C2318DC1E82917E007A61BF /* L3SmartBoat.app */;
+			productType = "com.apple.product-type.application";
+		};
+		5C2318FA1E82917F007A61BF /* L3SmartBoatTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5C2319121E82917F007A61BF /* Build configuration list for PBXNativeTarget "L3SmartBoatTests" */;
+			buildPhases = (
+				5C2318F71E82917F007A61BF /* Sources */,
+				5C2318F81E82917F007A61BF /* Frameworks */,
+				5C2318F91E82917F007A61BF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5C2318FD1E82917F007A61BF /* PBXTargetDependency */,
+			);
+			name = L3SmartBoatTests;
+			productName = L3SmartBoatTests;
+			productReference = 5C2318FB1E82917F007A61BF /* L3SmartBoatTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		5C2319051E82917F007A61BF /* L3SmartBoatUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5C2319151E82917F007A61BF /* Build configuration list for PBXNativeTarget "L3SmartBoatUITests" */;
+			buildPhases = (
+				5C2319021E82917F007A61BF /* Sources */,
+				5C2319031E82917F007A61BF /* Frameworks */,
+				5C2319041E82917F007A61BF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5C2319081E82917F007A61BF /* PBXTargetDependency */,
+			);
+			name = L3SmartBoatUITests;
+			productName = L3SmartBoatUITests;
+			productReference = 5C2319061E82917F007A61BF /* L3SmartBoatUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		5C2318D41E82917E007A61BF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = "Jerome Godefroy";
+				TargetAttributes = {
+					5C2318DB1E82917E007A61BF = {
+						CreatedOnToolsVersion = 7.2;
+					};
+					5C2318FA1E82917F007A61BF = {
+						CreatedOnToolsVersion = 7.2;
+						TestTargetID = 5C2318DB1E82917E007A61BF;
+					};
+					5C2319051E82917F007A61BF = {
+						CreatedOnToolsVersion = 7.2;
+						TestTargetID = 5C2318DB1E82917E007A61BF;
+					};
+				};
+			};
+			buildConfigurationList = 5C2318D71E82917E007A61BF /* Build configuration list for PBXProject "L3SmartBoat" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 5C2318D31E82917E007A61BF;
+			productRefGroup = 5C2318DD1E82917E007A61BF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				5C2318DB1E82917E007A61BF /* L3SmartBoat */,
+				5C2318FA1E82917F007A61BF /* L3SmartBoatTests */,
+				5C2319051E82917F007A61BF /* L3SmartBoatUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		5C2318DA1E82917E007A61BF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5C2318F51E82917F007A61BF /* LaunchScreen.storyboard in Resources */,
+				5C2318F21E82917F007A61BF /* Assets.xcassets in Resources */,
+				5C2318F01E82917F007A61BF /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5C2318F91E82917F007A61BF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5C2319041E82917F007A61BF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		5C2318D81E82917E007A61BF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5C2318EA1E82917E007A61BF /* DataViewController.m in Sources */,
+				5C2318E41E82917E007A61BF /* AppDelegate.m in Sources */,
+				5C2318ED1E82917E007A61BF /* ModelController.m in Sources */,
+				5C2318E11E82917E007A61BF /* main.m in Sources */,
+				5C2318E71E82917E007A61BF /* RootViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5C2318F71E82917F007A61BF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5C2319001E82917F007A61BF /* L3SmartBoatTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5C2319021E82917F007A61BF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5C23190B1E82917F007A61BF /* L3SmartBoatUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		5C2318FD1E82917F007A61BF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5C2318DB1E82917E007A61BF /* L3SmartBoat */;
+			targetProxy = 5C2318FC1E82917F007A61BF /* PBXContainerItemProxy */;
+		};
+		5C2319081E82917F007A61BF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5C2318DB1E82917E007A61BF /* L3SmartBoat */;
+			targetProxy = 5C2319071E82917F007A61BF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		5C2318EE1E82917F007A61BF /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5C2318EF1E82917F007A61BF /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		5C2318F31E82917F007A61BF /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5C2318F41E82917F007A61BF /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		5C23190D1E82917F007A61BF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		5C23190E1E82917F007A61BF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		5C2319101E82917F007A61BF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = L3SmartBoat/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = ulr.L3SmartBoat;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		5C2319111E82917F007A61BF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = L3SmartBoat/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = ulr.L3SmartBoat;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		5C2319131E82917F007A61BF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = L3SmartBoatTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = ulr.L3SmartBoatTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/L3SmartBoat.app/L3SmartBoat";
+			};
+			name = Debug;
+		};
+		5C2319141E82917F007A61BF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = L3SmartBoatTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = ulr.L3SmartBoatTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/L3SmartBoat.app/L3SmartBoat";
+			};
+			name = Release;
+		};
+		5C2319161E82917F007A61BF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = L3SmartBoatUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = ulr.L3SmartBoatUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = L3SmartBoat;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		5C2319171E82917F007A61BF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = L3SmartBoatUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = ulr.L3SmartBoatUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = L3SmartBoat;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		5C2318D71E82917E007A61BF /* Build configuration list for PBXProject "L3SmartBoat" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5C23190D1E82917F007A61BF /* Debug */,
+				5C23190E1E82917F007A61BF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5C23190F1E82917F007A61BF /* Build configuration list for PBXNativeTarget "L3SmartBoat" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5C2319101E82917F007A61BF /* Debug */,
+				5C2319111E82917F007A61BF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		5C2319121E82917F007A61BF /* Build configuration list for PBXNativeTarget "L3SmartBoatTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5C2319131E82917F007A61BF /* Debug */,
+				5C2319141E82917F007A61BF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		5C2319151E82917F007A61BF /* Build configuration list for PBXNativeTarget "L3SmartBoatUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5C2319161E82917F007A61BF /* Debug */,
+				5C2319171E82917F007A61BF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 5C2318D41E82917E007A61BF /* Project object */;
+}
