@@ -24,4 +24,26 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+// Methode permettant de recuperer les données du simulateur buggé ---------------
+
+- (void)serialPortReadData:(NSDictionary *)dataDictionary
+{
+    // this method is called if data arrives
+    // @"data" is the actual data, @"serialPort" is the sending port
+    AMSerialPort *sendPort = [dataDictionary objectForKey:@"serialPort"];
+    NSData *data = [dataDictionary objectForKey:@"data"];
+    if ([data length] > 0) {
+        NSString *text = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
+        [outputTextView insertText:text];
+        [text release];
+        // continue listening
+        [sendPort readDataInBackground];
+    } else { // port closed
+        [outputTextView insertText:@"port closed\r"];
+    }
+    [outputTextView setNeedsDisplay:YES];
+    [outputTextView displayIfNeeded];
+}
+
 @end

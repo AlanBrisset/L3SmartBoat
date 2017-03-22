@@ -16,6 +16,7 @@
 		5C51D5431E82B1E800C1712A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C51D5411E82B1E800C1712A /* LaunchScreen.storyboard */; };
 		5C51D54E1E82B1E800C1712A /* L3smartBoatTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C51D54D1E82B1E800C1712A /* L3smartBoatTests.m */; };
 		5C51D5591E82B1E900C1712A /* L3smartBoatUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C51D5581E82B1E900C1712A /* L3smartBoatUITests.m */; };
+		71D15A4E1E82E8600001CABE /* ThirdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71D15A4D1E82E8600001CABE /* ThirdViewController.m */; };
 		8ED4B5531E82BBE6003DAA2A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ED4B5521E82BBE6003DAA2A /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +56,8 @@
 		5C51D5541E82B1E900C1712A /* L3smartBoatUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = L3smartBoatUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C51D5581E82B1E900C1712A /* L3smartBoatUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = L3smartBoatUITests.m; sourceTree = "<group>"; };
 		5C51D55A1E82B1E900C1712A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		71D15A4C1E82E8290001CABE /* ThirdViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThirdViewController.h; sourceTree = "<group>"; };
+		71D15A4D1E82E8600001CABE /* ThirdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThirdViewController.m; sourceTree = "<group>"; };
 		8ED4B5521E82BBE6003DAA2A /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -114,6 +117,8 @@
 				5C51D5371E82B1E800C1712A /* FirstViewController.m */,
 				5C51D5391E82B1E800C1712A /* SecondViewController.h */,
 				5C51D53A1E82B1E800C1712A /* SecondViewController.m */,
+				71D15A4C1E82E8290001CABE /* ThirdViewController.h */,
+				71D15A4D1E82E8600001CABE /* ThirdViewController.m */,
 				5C51D53C1E82B1E800C1712A /* Main.storyboard */,
 				5C51D53F1E82B1E800C1712A /* Assets.xcassets */,
 				5C51D5411E82B1E800C1712A /* LaunchScreen.storyboard */,
@@ -288,6 +293,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5C51D53B1E82B1E800C1712A /* SecondViewController.m in Sources */,
+				71D15A4E1E82E8600001CABE /* ThirdViewController.m in Sources */,
 				5C51D5351E82B1E800C1712A /* AppDelegate.m in Sources */,
 				5C51D5381E82B1E800C1712A /* FirstViewController.m in Sources */,
 				5C51D5321E82B1E800C1712A /* main.m in Sources */,

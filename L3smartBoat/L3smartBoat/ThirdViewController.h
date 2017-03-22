@@ -1,5 +1,5 @@
 //
-//  FirstViewController.h
+//  ThirdViewController.h
 //  L3smartBoat
 //
 //  Created by Jerome Godefroy on 22/03/2017.
@@ -8,9 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+@interface ThirdViewController : UIViewController
 
-@interface FirstViewController : UIViewController
- 	
 
 @end
-
