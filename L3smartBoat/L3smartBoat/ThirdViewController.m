@@ -8,6 +8,8 @@
 
 #import "ThirdViewController.h"
 
+#define METERS_PER_MILE 1609.344
+
 @interface ThirdViewController ()
 
 @end
@@ -22,6 +24,19 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    // 1
+    CLLocationCoordinate2D zoomLocation;
+    zoomLocation.latitude = 46.1474909;
+    zoomLocation.longitude= -1.1671439;
+    
+    // 2
+    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(zoomLocation, 0.8	*METERS_PER_MILE, 0.8*METERS_PER_MILE);
+    
+    // 3
+    [_mapView setRegion:viewRegion animated:YES];
 }
 
 @end

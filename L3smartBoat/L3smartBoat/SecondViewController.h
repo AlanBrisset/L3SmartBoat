@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Mapkit/Mapkit.h>
 
 @interface SecondViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet MKMapView *mapView;
 
 @end
 
