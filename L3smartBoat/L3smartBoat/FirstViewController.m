@@ -8,7 +8,6 @@
 
 #import "FirstViewController.h"
 
-
 #define METERS_PER_MILE 1609.344
 
 @interface FirstViewController ()
@@ -26,9 +25,22 @@
     NSString * contenu = [NSString stringWithContentsOfFile:@"/users/nathan/Desktop/fichier.txt" encoding:NSUTF8StringEncoding error:&erreur];
     NSString * coordonnees = [self getCoordonnees:contenu];*/
     
-    /*NSURL *targetURL = [NSURL URLWithString:@"http://127.0.0.1:8080"];
-    NSURLRequest *request = [NSURLRequest requestWithURL:targetURL];
-    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+    /*
+     *  Init draw line
+     */
+    //initialize your map view and add it to your view hierarchy - **set its delegate to self***
+    CLLocationCoordinate2D coordinateArray[2];
+    int lat1 = 46.1474909;
+    int lat2 = 45.1474909;
+    int longi = -1.1671439;
+    coordinateArray[0] = CLLocationCoordinate2DMake(lat1, longi);
+    coordinateArray[1] = CLLocationCoordinate2DMake(lat2, longi);
+    
+    
+    self.routeLine = [MKPolyline polylineWithCoordinates:coordinateArray count:2];
+    [self.mapView setVisibleMapRect:[self.routeLine boundingMapRect]]; //If you want the route to be visible
+    
+    [self.mapView addOverlay:self.routeLine];
     
     NSString *dataString = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
     NSArray *components = [dataString componentsSeparatedByString:@"|"];*/
@@ -134,6 +146,28 @@
     annotation.coordinate = pinCoordinate;
     annotation.title = @"Title"; //You can set the subtitle too
     [self.mapView addAnnotation:annotation];
+}
+
+
+// Display line drawed
+-(MKOverlayRenderer *)mapView:(MKMapView *)mapView viewForOverlay:(id<MKOverlay>)overlay
+{
+    if(overlay == self.routeLine)
+    {
+        if(nil == self.routeLineView)
+        {
+            
+            self.routeLineView = [[MKPolylineRenderer alloc] initWithOverlay:[self routeLine]];
+            self.routeLineView.fillColor = [UIColor redColor];
+            self.routeLineView.strokeColor = [UIColor redColor];
+            self.routeLineView.lineWidth = 5;
+            
+        }
+        
+        return self.routeLineView;
+    }
+    
+    return nil;
 }
 
 
