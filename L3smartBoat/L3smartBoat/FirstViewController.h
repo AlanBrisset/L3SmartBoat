@@ -9,15 +9,13 @@
 #import <UIKit/UIKit.h>
 #import <Mapkit/Mapkit.h>
 
-@interface FirstViewController : UIViewController<NSURLConnectionDelegate>
+@interface FirstViewController : UIViewController <MKMapViewDelegate, NSURLConnectionDelegate>
 {
     NSMutableData *_responseData;
 }
 
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
-
-    
 
 @end
 

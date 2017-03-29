@@ -43,8 +43,6 @@
     
     
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -63,9 +61,8 @@
     
     // 3
     [_mapView setRegion:viewRegion animated:YES];
+    
 }
-
-
 
 //permet de recuperer les coordonnées depuis la trame !!!il faut passer la derniere trame en parametre!!!  reponse sous la forme "lattitude;longitude"
 -(NSString*)getCoordonnees:(NSString*)trame {
@@ -78,8 +75,25 @@
     coordonees = [coordonees stringByAppendingString:@";"];
     coordonees = [coordonees stringByAppendingString:arrayCoors[3]];
     
+    // Send coord to pinPosition
+    CLLocation *dataCoord = [[CLLocation alloc] initWithLatitude:[arrayCoors[1] intValue] longitude:[arrayCoors[3] intValue]];
+    [self pinPosition:dataCoord];
     
     return coordonees;
+}
+
+// Add pin on the map
+- (void)pinPosition:(CLLocation *)responseCoordinate {
+    
+    CLLocationCoordinate2D pinCoordinate;
+    pinCoordinate.latitude = responseCoordinate.coordinate.latitude;
+    pinCoordinate.longitude = responseCoordinate.coordinate.longitude;
+    
+    MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
+    // [annotation setCoordinate: pinCoordinate];
+    annotation.coordinate = pinCoordinate;
+    annotation.title = @"Title"; //You can set the subtitle too
+    [self.mapView addAnnotation:annotation];
 }
 
 
