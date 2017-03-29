@@ -75,8 +75,48 @@
     coordonees = [coordonees stringByAppendingString:@";"];
     coordonees = [coordonees stringByAppendingString:arrayCoors[3]];
     
+    
+    NSString * lattitude =arrayCoors[1];
+    
+    
+    char * tmp = [lattitude UTF8String];
+    
+    NSString *minLat = @"";
+    NSString *lat = @"";
+    for(int i = lattitude.length; i >= 0; i--){
+        if(i > lattitude.length-7)
+            minLat = [NSString stringWithFormat:@"%c%@", tmp[i], minLat];
+        else
+            lat = [NSString stringWithFormat:@"%c%@", tmp[i], lat];
+    }
+    
+    NSString * longitude =arrayCoors[3];
+    
+    char * tmpLongi = [longitude UTF8String];
+    
+    NSString *minLongi = @"";
+    NSString *longi = @"";
+    for(int i = longitude.length; i >= 0; i--){
+        if(i > longitude.length-7)
+            minLongi = [NSString stringWithFormat:@"%c%@", tmpLongi[i], minLongi];
+        else
+            longi = [NSString stringWithFormat:@"%c%@", tmpLongi[i], longi];
+    }
+    
+    float latitudeVal = [minLat floatValue];
+    latitudeVal = (latitudeVal/60) + [lat intValue];
+    
+    float longitudeVal = [minLongi floatValue];
+    longitudeVal = (longitudeVal/60)+[longi intValue];
+    
+    if([arrayCoors[2]  isEqual: @"S"])
+        latitudeVal = -latitudeVal;
+    
+    if([arrayCoors[4] isEqual: @"W"])
+        longitudeVal = -longitudeVal;
+    
     // Send coord to pinPosition
-    CLLocation *dataCoord = [[CLLocation alloc] initWithLatitude:[arrayCoors[1] intValue] longitude:[arrayCoors[3] intValue]];
+    CLLocation *dataCoord = [[CLLocation alloc] initWithLatitude:latitudeVal longitude:longitudeVal];
     [self pinPosition:dataCoord];
     
     return coordonees;
