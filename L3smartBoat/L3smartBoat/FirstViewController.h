@@ -9,7 +9,11 @@
 #import <UIKit/UIKit.h>
 #import <Mapkit/Mapkit.h>
 
-@interface FirstViewController : UIViewController <MKMapViewDelegate>
+@interface FirstViewController : UIViewController <MKMapViewDelegate, NSURLConnectionDelegate>
+{
+    NSMutableData *_responseData;
+}
+
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (nonatomic, retain) MKPolyline *routeLine; //your line
