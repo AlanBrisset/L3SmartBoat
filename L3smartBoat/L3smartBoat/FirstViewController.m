@@ -19,6 +19,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    
+    
+    /*
+     *  Example for adding pin
+     */
+    CLLocation *data = [[CLLocation alloc] initWithLatitude:46.1474909 longitude:-1.1671439];
+    // Add new line inside refreshTapped, in the setCompletionBlock, right after logging the response string
+    [self pinPosition:data];
+    
+    CLLocation *data2 = [[CLLocation alloc] initWithLatitude:47.1474909 longitude:-0.1671439];
+    [self pinPosition:data2];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -37,6 +48,21 @@
     
     // 3
     [_mapView setRegion:viewRegion animated:YES];
+    
+}
+
+// Add new method above refreshTapped
+- (void)pinPosition:(CLLocation *)responseCoordinate {
+    
+    CLLocationCoordinate2D pinCoordinate;
+    pinCoordinate.latitude = responseCoordinate.coordinate.latitude;
+    pinCoordinate.longitude = responseCoordinate.coordinate.longitude;
+    
+    MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
+    // [annotation setCoordinate: pinCoordinate];
+    annotation.coordinate = pinCoordinate;
+    annotation.title = @"Title"; //You can set the subtitle too
+    [self.mapView addAnnotation:annotation];
 }
 
 @end

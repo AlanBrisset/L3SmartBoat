@@ -9,10 +9,9 @@
 #import <UIKit/UIKit.h>
 #import <Mapkit/Mapkit.h>
 
-@interface FirstViewController : UIViewController
+@interface FirstViewController : UIViewController <MKMapViewDelegate>
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
-    
 
 @end
 
