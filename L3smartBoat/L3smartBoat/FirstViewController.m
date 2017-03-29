@@ -28,18 +28,6 @@
     
     
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
-    
-    
-    /*
-     *  Example for adding pin
-     */
-    CLLocation *data = [[CLLocation alloc] initWithLatitude:46.1474909 longitude:-1.1671439];
-    // Add new line inside refreshTapped, in the setCompletionBlock, right after logging the response string
-    [self pinPosition:data];
-    
-    CLLocation *data2 = [[CLLocation alloc] initWithLatitude:47.1474909 longitude:-0.1671439];
-    [self pinPosition:data2];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -61,8 +49,6 @@
     
 }
 
-
-
 //permet de recuperer les coordonnées depuis la trame !!!il faut passer la derniere trame en parametre!!!  reponse sous la forme "lattitude;longitude"
 -(NSString*)getCoordonnees:(NSString*)trame {
     NSArray * array = [[NSArray alloc] initWithArray:[trame componentsSeparatedByString:@"$"]];
@@ -74,11 +60,14 @@
     coordonees = [coordonees stringByAppendingString:@";"];
     coordonees = [coordonees stringByAppendingString:arrayCoors[3]];
     
+    // Send coord to pinPosition
+    CLLocation *dataCoord = [[CLLocation alloc] initWithLatitude:[arrayCoors[1] intValue] longitude:[arrayCoors[3] intValue]];
+    [self pinPosition:dataCoord];
     
     return coordonees;
 }
 
-// Add new method above refreshTapped
+// Add pin on the map
 - (void)pinPosition:(CLLocation *)responseCoordinate {
     
     CLLocationCoordinate2D pinCoordinate;
