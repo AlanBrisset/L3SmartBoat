@@ -8,6 +8,7 @@
 
 #import "FirstViewController.h"
 
+
 #define METERS_PER_MILE 1609.344
 
 @interface FirstViewController ()
@@ -17,8 +18,18 @@
 @implementation FirstViewController
 
 - (void)viewDidLoad {
+    
+    
+    /* test de la récupération des coordonnées
+     
+    NSError * erreur = nil;
+    NSString * contenu = [NSString stringWithContentsOfFile:@"/users/nathan/Desktop/fichier.txt" encoding:NSUTF8StringEncoding error:&erreur];
+    NSString * coordonnees = [self getCoordonnees:contenu];*/
+    
+    
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -37,6 +48,23 @@
     
     // 3
     [_mapView setRegion:viewRegion animated:YES];
+}
+
+
+
+//permet de recuperer les coordonnées depuis la trame !!!il faut passer la derniere trame en parametre!!!  reponse sous la forme "lattitude;longitude"
+-(NSString*)getCoordonnees:(NSString*)trame {
+    NSArray * array = [[NSArray alloc] initWithArray:[trame componentsSeparatedByString:@"$"]];
+    NSString * line  = array[3];
+    
+    NSArray * arrayCoors = [[NSArray alloc] initWithArray:[line componentsSeparatedByString:@","]];
+    
+    NSString * coordonees = arrayCoors[1];
+    coordonees = [coordonees stringByAppendingString:@";"];
+    coordonees = [coordonees stringByAppendingString:arrayCoors[3]];
+    
+    
+    return coordonees;
 }
 
 @end
