@@ -42,7 +42,7 @@
     
     [self.mapView addOverlay:self.routeLine];
     
-    NSString *dataString = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
+   /* NSString *dataString = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
     NSArray *components = [dataString componentsSeparatedByString:@"|"];*/
    
     //[dataString release];
