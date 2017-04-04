@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import<MapKit/MapKit.h>
 
-@interface ThirdViewController : UIViewController
+@interface ThirdViewController : UIViewController<UIGestureRecognizerDelegate>
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 
