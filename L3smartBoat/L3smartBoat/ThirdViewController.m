@@ -60,31 +60,29 @@ int timer = 1;
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
 {
-    // you could check for specific gestures here, but ¯\_(ツ)_/¯
+    // you could check for specific gestures here
     return YES;
 }
 
 - (void)handleLongPress:(UILongPressGestureRecognizer *)longPress
 {
     // drop a marker annotation
+    MKPointAnnotation *point = [MKPointAnnotation new];
+    point.coordinate = [self.mapView convertPoint:[longPress locationInView:longPress.view] toCoordinateFromView:self.mapView];
+    NSString *num = [NSString stringWithFormat:@"%d",timer];
 
+    point.title = [NSString stringWithFormat:@"Waypoint n°%@",num];
     
-        MKPointAnnotation *point = [MKPointAnnotation new];
-        point.coordinate = [self.mapView convertPoint:[longPress locationInView:longPress.view]
-                                 toCoordinateFromView:self.mapView];
-        NSString *num = [NSString stringWithFormat:@"%d",timer];
-        NSString *pointT = [NSString stringWithFormat:@"Checkpoint n°%@",num];
-
-        point.title = pointT;
-        point.subtitle = [NSString stringWithFormat:@"lat: %.3f, lon: %.3f", point.coordinate.latitude, point.coordinate.longitude];
-        [self.mapView addAnnotation:point];
-        [self.mapView selectAnnotation:point animated:YES];
-        usleep(9888);
-        timer ++;
-            
-        
-
+    // add waypoint in list
+    [self.waypoints addObject:point];
+    NSLog(self.waypoints);
     
+    // beautify marker
+    point.subtitle = [NSString stringWithFormat:@"lat: %.3f, lon: %.3f", point.coordinate.latitude, point.coordinate.longitude];
+    [self.mapView addAnnotation:point];
+    [self.mapView selectAnnotation:point animated:YES];
+    usleep(9888);
+    timer ++;
 }
 
 - (BOOL)mapView:(MKMapView *)mapView annotationCanShowCallout:(id <MKAnnotation>)annotation

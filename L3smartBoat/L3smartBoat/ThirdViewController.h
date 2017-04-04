@@ -13,4 +13,6 @@
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 
+@property(weak, nonatomic) NSMutableArray *waypoints;
+
 @end

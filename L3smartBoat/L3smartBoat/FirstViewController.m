@@ -180,7 +180,7 @@
     MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
     // [annotation setCoordinate: pinCoordinate];
     annotation.coordinate = pinCoordinate;
-    annotation.title = @"Checkpoint";
+    annotation.title = @"Waypoint";
     annotation.subtitle = [NSString stringWithFormat:@"Lat: %f - Long: %f", pinCoordinate.latitude, pinCoordinate.longitude];
     [self.mapView addAnnotation:annotation];
 }
