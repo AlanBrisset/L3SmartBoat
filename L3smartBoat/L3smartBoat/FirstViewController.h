@@ -16,8 +16,6 @@
 
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
-@property (nonatomic, retain) MKPolyline *routeLine; //your line
-@property (nonatomic, retain) MKPolylineRenderer *routeLineView; //overlay view
 
 @end
 

@@ -18,11 +18,43 @@
 
 - (void)viewDidLoad {
     
+    /* NSString *dataString = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
+                         NSArray *components = [dataString componentsSeparatedByString:@"|"];*/
+    //[dataString release];
+    
+    // --------- Creation de la requête de connexion vers le simulateur ---------
+    
+    // Create the request.
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://127.0.0.1:8080"]];
+    
+    // Create url connection and fire request
+    NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    
+    [super viewDidLoad];
+    
+    // ------------------
+    
     /*
-     *  Init draw line
+     * Draw line
      */
-    //initialize your map view and add it to your view hierarchy - **set its delegate to self***
-    CLLocationCoordinate2D 	coordinates[2];
+    //Declare C array big enough to hold the number of coordinates in points...
+    CLLocationCoordinate2D coordinates[2]; //points.count];
+    
+    int coordinatesIndex = 0;
+    
+/*    for (NSDictionary * c in points) {
+        double x = [[c valueForKey:@"x"] doubleValue];
+        double y = [[c valueForKey:@"y"] doubleValue];
+        
+        CLLocationCoordinate2D coordinate;
+        coordinate.latitude = y;
+        coordinate.longitude = x;
+        
+        //Put this coordinate in the C array...
+        coordinates[coordinatesIndex] = coordinate;
+        
+        coordinatesIndex++;
+    }   */
     
     CLLocationCoordinate2D coordinate;
     coordinate.latitude = 46.1474909; coordinate.longitude = -1.1671439;
@@ -34,31 +66,14 @@
     coordinates[1] = coordinate;
     [self pinPosition:dataCoord2];
     
-    self.routeLine = [MKPolyline polylineWithCoordinates:coordinates count:2];
-    [self.mapView setVisibleMapRect:[self.routeLine boundingMapRect]]; //If you want the route to be visible
+    //C array is ready, create the polyline...
+    MKPolyline *polyline = [MKPolyline polylineWithCoordinates:coordinates count:2];
     
-    [self.mapView addOverlay:self.routeLine];
+    //Add the polyline to the map...
+    [self.mapView addOverlay:polyline level:MKOverlayLevelAboveRoads];
     
-    
-   /* NSString *dataString = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
-    NSArray *components = [dataString componentsSeparatedByString:@"|"];*/
-    //[dataString release];
-    
-	// --------- Creation de la requête de connexion vers le simulateur ---------
-
-    // Create the request.
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://127.0.0.1:8080"]];
-    
-    // Create url connection and fire request
-    NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-    
-    [super viewDidLoad];
-
-	// ------------------
 }
 
-/*  // Peut-être pour afficher une ligne entre 2 points
-    // http://stackoverflow.com/questions/25025639/draw-a-line-between-points-on-a-mapview
 -(MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay
 {
     if ([overlay isKindOfClass:[MKPolyline class]])
@@ -71,7 +86,6 @@
     
     return nil;
 }
-*/
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -169,32 +183,6 @@
     annotation.title = @"Custom Pointer"; //You can set the subtitle too
     [self.mapView addAnnotation:annotation];
 }
-
-
-// Display line drawed
--(MKOverlayRenderer *)mapView:(MKMapView *)mapView viewForOverlay:(id<MKOverlay>)overlay
-{
-    if(overlay == self.routeLine)
-    {
-        if(nil == self.routeLineView)
-        {
-            
-            self.routeLineView = [[MKPolylineRenderer alloc] initWithOverlay:[self routeLine]];
-            self.routeLineView.fillColor = [UIColor redColor];
-            self.routeLineView.strokeColor = [UIColor redColor];
-            self.routeLineView.lineWidth = 5;
-            
-        }
-        
-        return self.routeLineView;
-    }
-    
-    return nil;
-}
-
-
-
-
 
 #pragma mark NSURLConnection Delegate Methods
 
