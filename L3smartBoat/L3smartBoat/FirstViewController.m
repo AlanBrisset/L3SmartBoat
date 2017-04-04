@@ -29,22 +29,26 @@
      *  Init draw line
      */
     //initialize your map view and add it to your view hierarchy - **set its delegate to self***
-    CLLocationCoordinate2D coordinateArray[2];
-    int lat1 = 46.1474909;
-    int lat2 = 45.1474909;
-    int longi = -1.1671439;
-    coordinateArray[0] = CLLocationCoordinate2DMake(lat1, longi);
-    coordinateArray[1] = CLLocationCoordinate2DMake(lat2, longi);
+    CLLocationCoordinate2D 	coordinates[2];
     
+    CLLocationCoordinate2D coordinate;
+    coordinate.latitude = 46.1474909; coordinate.longitude = -1.1671439;
+    CLLocation *dataCoord = [[CLLocation alloc] initWithLatitude:46.1474909 longitude:-1.1671439];
+    coordinates[0] = coordinate;
+    [self pinPosition:dataCoord];
+    coordinate.latitude = 45.1474909;
+    CLLocation *dataCoord2 = [[CLLocation alloc] initWithLatitude:45.1474909 longitude:-1.1671439];
+    coordinates[1] = coordinate;
+    [self pinPosition:dataCoord2];
     
-    self.routeLine = [MKPolyline polylineWithCoordinates:coordinateArray count:2];
+    self.routeLine = [MKPolyline polylineWithCoordinates:coordinates count:2];
     [self.mapView setVisibleMapRect:[self.routeLine boundingMapRect]]; //If you want the route to be visible
     
     [self.mapView addOverlay:self.routeLine];
     
+    
    /* NSString *dataString = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
     NSArray *components = [dataString componentsSeparatedByString:@"|"];*/
-   
     //[dataString release];
     
     // Create the request.
@@ -53,9 +57,24 @@
     // Create url connection and fire request
     NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     
-    
     [super viewDidLoad];
 }
+
+/*  // Peut-être pour afficher une ligne entre 2 points
+    // http://stackoverflow.com/questions/25025639/draw-a-line-between-points-on-a-mapview
+-(MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay
+{
+    if ([overlay isKindOfClass:[MKPolyline class]])
+    {
+        MKPolylineRenderer *pr = [[MKPolylineRenderer alloc] initWithPolyline:overlay];
+        pr.strokeColor = [UIColor redColor];
+        pr.lineWidth = 5;
+        return pr;
+    }
+    
+    return nil;
+}
+*/
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
