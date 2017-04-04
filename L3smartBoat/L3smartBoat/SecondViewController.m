@@ -37,6 +37,18 @@
     
     // 3
     [_mapView setRegion:viewRegion animated:YES];
+    
+    // 4
+    //Get boat position
+    CLLocation *exampleLoc;
+    self.boatHomeLocation = exampleLoc;
 }
+
+- (IBAction)returnHome:(id)sender {
+    //Clear list waypoint
+    
+    //set self.boatHomeLocation en unique waypoint
+}
+
 
 @end
