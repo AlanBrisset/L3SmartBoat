@@ -59,11 +59,11 @@
     CLLocationCoordinate2D coordinate;
     coordinate.latitude = 46.1474909; coordinate.longitude = -1.1671439;
     CLLocation *dataCoord = [[CLLocation alloc] initWithLatitude:46.1474909 longitude:-1.1671439];
-    coordinates[0] = coordinate;
+    coordinates[coordinatesIndex] = coordinate;
     [self pinPosition:dataCoord];
     coordinate.latitude = 45.1474909;
     CLLocation *dataCoord2 = [[CLLocation alloc] initWithLatitude:45.1474909 longitude:-1.1671439];
-    coordinates[1] = coordinate;
+    coordinates[coordinatesIndex+1] = coordinate;
     [self pinPosition:dataCoord2];
     
     //C array is ready, create the polyline...
@@ -149,7 +149,7 @@
             longi = [NSString stringWithFormat:@"%c%@", tmpLongi[i], longi];
     }
 
-    
+    // --- Conversion vers des données compréhensible pour l'application
     float latitudeVal = [minLat floatValue];
     latitudeVal = (latitudeVal/60) + [lat intValue];
     
@@ -163,7 +163,7 @@
     if([arrayCoors[4] isEqual: @"W"])
         longitudeVal = -longitudeVal;
     
-    // Send coord to pinPosition
+    // --- Crée un pin à la position
     CLLocation *dataCoord = [[CLLocation alloc] initWithLatitude:latitudeVal longitude:longitudeVal];
     [self pinPosition:dataCoord];
     
@@ -180,7 +180,8 @@
     MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
     // [annotation setCoordinate: pinCoordinate];
     annotation.coordinate = pinCoordinate;
-    annotation.title = @"Custom Pointer"; //You can set the subtitle too
+    annotation.title = @"Checkpoint";
+    annotation.subtitle = [NSString stringWithFormat:@"Lat: %f - Long: %f", pinCoordinate.latitude, pinCoordinate.longitude];
     [self.mapView addAnnotation:annotation];
 }
 
