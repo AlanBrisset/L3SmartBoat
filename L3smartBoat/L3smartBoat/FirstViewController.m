@@ -60,7 +60,7 @@
     
 /*    CLLocationCoordinate2D coordinate;
     coordinate.latitude = 46.1474909; coordinate.longitude = -1.1671439;
-    CLLocation *dataCoord = [[CLLocation alloc] initWithLatitude:46.1474909 longitude:-1.1671439];
+    CLLocation *dataCoord = [[CLLocation alloc] initWithLatitude:46.1474909 longitude:-1.1671439];	
     coordinates[coordinatesIndex] = coordinate;
     [self pinPosition:dataCoord];
     coordinate.latitude = 45.1474909;

@@ -13,5 +13,6 @@
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 
-@end
+@property (weak, nonatomic) CLLocation *boatHomeLocation;
 
+@end
