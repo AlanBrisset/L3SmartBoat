@@ -35,12 +35,14 @@
     // ------------------
     
     /*
+     * Code bon mais ne fonctionne pas
+     * ------------------
      * Draw line
      */
     //Declare C array big enough to hold the number of coordinates in points...
-    CLLocationCoordinate2D coordinates[2]; //points.count];
+//    CLLocationCoordinate2D coordinates[2]; //points.count];
     
-    int coordinatesIndex = 0;
+//    int coordinatesIndex = 0;
     
 /*    for (NSDictionary * c in points) {
         double x = [[c valueForKey:@"x"] doubleValue];
@@ -56,7 +58,7 @@
         coordinatesIndex++;
     }   */
     
-    CLLocationCoordinate2D coordinate;
+/*    CLLocationCoordinate2D coordinate;
     coordinate.latitude = 46.1474909; coordinate.longitude = -1.1671439;
     CLLocation *dataCoord = [[CLLocation alloc] initWithLatitude:46.1474909 longitude:-1.1671439];
     coordinates[0] = coordinate;
@@ -71,6 +73,8 @@
     
     //Add the polyline to the map...
     [self.mapView addOverlay:polyline level:MKOverlayLevelAboveRoads];
+    */
+    // ------------------
     
 }
 
