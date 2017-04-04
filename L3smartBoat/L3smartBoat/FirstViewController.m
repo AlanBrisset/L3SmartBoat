@@ -18,13 +18,6 @@
 
 - (void)viewDidLoad {
     
-    
-    /* test de la récupération des coordonnées
-     
-    NSError * erreur = nil;
-    NSString * contenu = [NSString stringWithContentsOfFile:@"/users/nathan/Desktop/fichier.txt" encoding:NSUTF8StringEncoding error:&erreur];
-    NSString * coordonnees = [self getCoordonnees:contenu];*/
-    
     /*
      *  Init draw line
      */
@@ -51,6 +44,8 @@
     NSArray *components = [dataString componentsSeparatedByString:@"|"];*/
     //[dataString release];
     
+	// --------- Creation de la requête de connexion vers le simulateur ---------
+
     // Create the request.
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://127.0.0.1:8080"]];
     
@@ -58,6 +53,8 @@
     NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     
     [super viewDidLoad];
+
+	// ------------------
 }
 
 /*  // Peut-être pour afficher une ligne entre 2 points
@@ -82,7 +79,8 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    // 1
+	// --------- Paramétrage du zoom initial : on souhaite avoir une vue de La Rochelle lorsqu'on lance l'application. ---------
+	// 1
     CLLocationCoordinate2D zoomLocation;
     zoomLocation.latitude = 46.1474909;
     zoomLocation.longitude= -1.1671439;
@@ -95,33 +93,36 @@
     
 }
 
-//permet de recuperer les coordonnées depuis la trame !!!il faut passer la derniere trame en parametre!!!  reponse sous la forme "lattitude;longitude"
+// --------- Récupération des coordonnées depuis la trame. La dernière trame doit être passée en paramètre. Réponse sous la forme "Latitude ; Longitude" ---------
 -(NSString*)getCoordonnees:(NSString*)trame {
     NSArray * array = [[NSArray alloc] initWithArray:[trame componentsSeparatedByString:@"$"]];
     NSString * line  = array[3];
     
     NSArray * arrayCoors = [[NSArray alloc] initWithArray:[line componentsSeparatedByString:@","]];
     
-    NSString * coordonees = arrayCoors[1];
+    NSString * coordonees = arrayCoors[1]; // Récupération de la latitude
     coordonees = [coordonees stringByAppendingString:@";"];
-    coordonees = [coordonees stringByAppendingString:arrayCoors[3]];
+    coordonees = [coordonees stringByAppendingString:arrayCoors[3]]; // Récupération de la longitude
     
     
-    NSString * lattitude =arrayCoors[1];
+	// --- Traitement de la latitude ---
+    NSString * latitude = arrayCoors[1];
     
     
-    char * tmp = [lattitude UTF8String];
+    char * tmp = [latitude UTF8String];
     
     NSString *minLat = @"";
     NSString *lat = @"";
-    for(int i = lattitude.length; i >= 0; i--){
-        if(i > lattitude.length-7)
+    for(int i = latitude.length; i >= 0; i--){
+        if(i > latitude.length-7)
             minLat = [NSString stringWithFormat:@"%c%@", tmp[i], minLat];
         else
             lat = [NSString stringWithFormat:@"%c%@", tmp[i], lat];
     }
     
-    NSString * longitude =arrayCoors[3];
+
+	// --- Traitement de la longitude
+    NSString * longitude = arrayCoors[3];
     
     char * tmpLongi = [longitude UTF8String];
     
@@ -133,6 +134,7 @@
         else
             longi = [NSString stringWithFormat:@"%c%@", tmpLongi[i], longi];
     }
+
     
     float latitudeVal = [minLat floatValue];
     latitudeVal = (latitudeVal/60) + [lat intValue];
@@ -140,6 +142,7 @@
     float longitudeVal = [minLongi floatValue];
     longitudeVal = (longitudeVal/60)+[longi intValue];
     
+	// --- Traitement du signe de la valeur de la latitude & de la longitude (Orientation NESO) ---
     if([arrayCoors[2]  isEqual: @"S"])
         latitudeVal = -latitudeVal;
     
@@ -153,7 +156,7 @@
     return coordonees;
 }
 
-// Add pin on the map
+// --------- Ajout d'un pointeur sur la map ---------
 - (void)pinPosition:(CLLocation *)responseCoordinate {
     
     CLLocationCoordinate2D pinCoordinate;
@@ -163,7 +166,7 @@
     MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
     // [annotation setCoordinate: pinCoordinate];
     annotation.coordinate = pinCoordinate;
-    annotation.title = @"Title"; //You can set the subtitle too
+    annotation.title = @"Custom Pointer"; //You can set the subtitle too
     [self.mapView addAnnotation:annotation];
 }
 
