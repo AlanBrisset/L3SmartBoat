@@ -68,9 +68,7 @@ int timer = 1;
 }
 
 
-
-
-
+// ----- ----- -----
 // GESTION DES ACTIONS DU DOIGT SUR LA MAP (pression longue durée) + STOCKAGE ET AFFICHAGE DES WAYPOINTS SUR LA MAP
 
 
@@ -104,7 +102,7 @@ int timer = 1;
 
     
     // beautify marker
-    point.subtitle = [NSString stringWithFormat:@"lat: %.3f, lon: %.3f", point.coordinate.latitude, point.coordinate.longitude];
+    point.subtitle = [NSString stringWithFormat:@"lat: %.3f, lon: %.3f", point.coordinate.latitude, point.coordinate.longitude];		
     [self.mapView addAnnotation:point];
     [self.mapView selectAnnotation:point animated:YES];
     usleep(9888);
@@ -131,7 +129,7 @@ int timer = 1;
     zoomLocation.longitude= -1.1671439;
     
     // 2
-    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(zoomLocation, 0.8	*METERS_PER_MILE, 0.8*METERS_PER_MILE);
+    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(zoomLocation, 0.8*METERS_PER_MILE, 0.8*METERS_PER_MILE);
     
     // 3
     [_mapView setRegion:viewRegion animated:YES];
@@ -171,15 +169,15 @@ int timer = 1;
     // --- Traitement du signe de la valeur de la latitude & de la longitude (Orientation NESO) ---
     if([[latitude substringToIndex:1]  isEqual: @"-"])
         signe1 = @"S";
-    else {
-     signe1 = @"N";
-    }
+    else
+        signe1 = @"N";
+    
     
     if([[longitude substringToIndex:1]  isEqual: @"-"])
         signe2 = @"W";
-    else {
+    else
         signe2 = @"E";
-    }
+    
     
     // Clone array pour le modifier
     NSMutableArray *arrayUpdate = [array mutableCopy];
@@ -189,7 +187,7 @@ int timer = 1;
     
     return [arrayUpdate componentsJoinedByString:@"$"];
     
-    }
+	}
     
     
 
@@ -231,13 +229,11 @@ int timer = 1;
     // creation du fichier .txt pour le NMEA SLEUTH
     
     NSError *error;
-    NSArray *paths = NSSearchPathForDirectoriesInDomains
-    (NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = @"/Users/leocharpentier/Desktop";
-    self.filePath = [NSString stringWithFormat:@"%@/waypoints.txt",
-                                 documentsDirectory];
+ //   NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+   // NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *dataPath = [ [[NSBundle mainBundle] bundlePath]  stringByAppendingPathComponent:@"waypoints.txt"];
   
-    [waypointData writeToFile:self.filePath atomically:YES encoding:NSUTF8StringEncoding error:&error];
+    [waypointData writeToFile:dataPath atomically:YES encoding:NSUTF8StringEncoding error:&error];
     
     
 }
