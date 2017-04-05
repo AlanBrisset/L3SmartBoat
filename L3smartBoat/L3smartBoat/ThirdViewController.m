@@ -7,7 +7,6 @@
 //
 
 #import "ThirdViewController.h"
-//#import "Mapbox.h"
 
 #define METERS_PER_MILE 1609.344
 
@@ -49,26 +48,27 @@ int timer = 1;
                                           initWithTarget:self action:@selector(handleLongPress:)];
     lpgr.minimumPressDuration = 1.0; //user needs to press for 2 seconds
     [self.mapView addGestureRecognizer:lpgr];
-    //[lpgr release];
+
     
-    /*
-     // update function each 1s
-     [NSTimer schedledTimerWithTimeInterval:1.0
-        target:self
-        selector:@selector(targetMethod: # )
-        userInfo:nil
-        repeats:NO];
-     */
+    
+    
+    // Lancement de la récupération des données du NMEA simulator
     
     // Create the request.
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://127.0.0.1:8080"]];
     
     // Create url connection and fire request
     NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    
 }
 
 
-// ----- ----- -----
+
+
+
+
+
+
 // GESTION DES ACTIONS DU DOIGT SUR LA MAP (pression longue durée) + STOCKAGE ET AFFICHAGE DES WAYPOINTS SUR LA MAP
 
 
@@ -144,7 +144,7 @@ int timer = 1;
 
 
 
-// --------- Récupération des coordonnées depuis la trame. Remplacement de la ligne de waypoints par nous propres waypoints ---------
+// --------- Récupération des coordonnées depuis la trame. Remplacement de la ligne de waypoints par nos propres waypoints ---------
 
 
 -(NSString*)setRequestNMEA:(NSString*)trame {
@@ -200,7 +200,7 @@ int timer = 1;
 
 
 
-// RECEPTION DES DONNEES DU NMEA SIMULATOR  --------------------------------------------
+// RECEPTION DES DONNEES DU NMEA SIMULATOR + TRAITEMENT DES ENVOIS AU MEME INSTANT --------------------------------------------
 
 - (NSURL *)applicationDocumentsDirectory {
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory
@@ -224,16 +224,22 @@ int timer = 1;
 
     NSString* waypointData = [self setRequestNMEA:trame];
     
-    [self launchURL:[NSURL URLWithString:@"http://127.0.0.1:8081"] withPostString:waypointData];
     
-    // creation du fichier .txt pour le NMEA SLEUTH
+    // Envoi données avec waypoints au serveur python
+    
+    [self sendNetworkCommunication: waypointData];
+    
+    
+    // creation du fichier .txt et ecriture des données avec waypoints
     
     NSError *error;
- //   NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-   // NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *dataPath = [ [[NSBundle mainBundle] bundlePath]  stringByAppendingPathComponent:@"waypoints.txt"];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains
+    (NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = @"/Users/leocharpentier/Desktop";
+    self.filePath = [NSString stringWithFormat:@"%@/waypoints.txt",
+                     documentsDirectory];
   
-    [waypointData writeToFile:dataPath atomically:YES encoding:NSUTF8StringEncoding error:&error];
+    [waypointData writeToFile:self.filePath atomically:YES encoding:NSUTF8StringEncoding error:&error];
     
     
 }
@@ -263,47 +269,40 @@ int timer = 1;
 
 
 
+// ENVOI DES DONNEES AU NMEA SLEUTH AVEC WAYPOINT SUR SERVER PYTHON --------------------------------------------
 
 
-// ENVOI DES DONNEES AU NMEA SLEUTH AVEC WAYPOINT AVEC METHODE POST --------------------------------------------
 
--(NSString*)launchURL:(NSURL*)url withPostString:(NSString*)post
-{
-    NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
-    NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
+-(void)sendNetworkCommunication:(NSString *)dataS  {
     
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setURL:url];
-    [request setHTTPMethod:@"POST"];
-    [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
-    [request setHTTPBody:postData];
+    CFReadStreamRef readStream;
+    CFWriteStreamRef writeStream;
+    CFStreamCreatePairWithSocketToHost(NULL,
+                                       (CFStringRef)@"127.0.0.1",
+                                       8081,
+                                       &readStream,
+                                       &writeStream);
+    NSInputStream *inputStream = (__bridge_transfer NSInputStream *)readStream;
+    NSOutputStream *outputStream = (__bridge_transfer NSOutputStream *)writeStream;
     
-    NSError *error = nil;
-    NSHTTPURLResponse *response = nil;
-    NSData *urlData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    [inputStream setDelegate:self];
+    [outputStream setDelegate:self];
     
-    if (response.statusCode >= 200 && response.statusCode < 300)
-    {
-        NSString *responseData = [[NSString alloc] initWithData:urlData encoding:NSUTF8StringEncoding];
-        if (responseData.length > 0) return responseData;
-    }
-    else if (error) return [error description];
+    [inputStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+    [outputStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
     
-    return nil;
+    [inputStream open];
+    [outputStream open];
+    
+    NSString *response  = dataS;
+    NSData *data = [[NSData alloc] initWithData:[response dataUsingEncoding:NSASCIIStringEncoding]];
+    [outputStream write:[data bytes] maxLength:[data length]];
+    
 }
+
+
 
 @end
 
 
 
-@implementation NSString (WebString)
--(NSString*)stringToWebStructure
-{
-    NSString* webString = [self stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    
-    webString = [webString stringByReplacingOccurrencesOfString:@"&" withString:@"%26"];
-    webString = [webString stringByReplacingOccurrencesOfString:@"?" withString:@"%3F"];
-    
-    return webString;
-}
-@end

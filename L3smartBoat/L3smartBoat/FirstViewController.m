@@ -18,9 +18,6 @@
 
 - (void)viewDidLoad {
     
-    /* NSString *dataString = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
-                         NSArray *components = [dataString componentsSeparatedByString:@"|"];*/
-    //[dataString release];
     
     // --------- Creation de la requête de connexion vers le simulateur ---------
     
@@ -40,7 +37,7 @@
      * Draw line
      */
     //Declare C array big enough to hold the number of coordinates in points...
-    CLLocationCoordinate2D coordinates[2]; //points.count];
+     //points.count];
     
     int coordinatesIndex = 0;
     
@@ -58,21 +55,7 @@
         coordinatesIndex++;
     }   */
     
-    CLLocationCoordinate2D coordinate;
-    coordinate.latitude = 46.1474909; coordinate.longitude = -1.1671439;
-    CLLocation *dataCoord = [[CLLocation alloc] initWithLatitude:46.1474909 longitude:-1.1671439];	
-    coordinates[coordinatesIndex] = coordinate;
-    [self pinPosition:dataCoord];
-    coordinate.latitude = 45.1474909;
-    CLLocation *dataCoord2 = [[CLLocation alloc] initWithLatitude:45.1474909 longitude:-1.1671439];
-    coordinates[coordinatesIndex+1] = coordinate;
-    [self pinPosition:dataCoord2];
     
-    //C array is ready, create the polyline...
-    MKPolyline *polyline = [MKPolyline polylineWithCoordinates:coordinates count:2];
-    
-    //Add the polyline to the map...
-    [self.mapView addOverlay:polyline level:MKOverlayLevelAboveRoads];
  
     // ------------------
     
@@ -181,12 +164,16 @@
     pinCoordinate.latitude = responseCoordinate.coordinate.latitude;
     pinCoordinate.longitude = responseCoordinate.coordinate.longitude;
     
+    
+    
     MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
     // [annotation setCoordinate: pinCoordinate];
     annotation.coordinate = pinCoordinate;
     annotation.title = @"Waypoint";
     annotation.subtitle = [NSString stringWithFormat:@"Lat: %f - Long: %f", pinCoordinate.latitude, pinCoordinate.longitude];
     [self.mapView addAnnotation:annotation];
+    
+    
 }
 
 #pragma mark NSURLConnection Delegate Methods
