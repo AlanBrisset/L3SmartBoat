@@ -149,7 +149,7 @@ int timer = 1;
 // --------- Récupération des coordonnées depuis la trame. Remplacement de la ligne de waypoints par nous propres waypoints ---------
 
 
--(NSString*)getCoordonnees:(NSString*)trame {
+-(NSString*)setRequestNMEA:(NSString*)trame {
     NSArray * array = [[NSArray alloc] initWithArray:[trame componentsSeparatedByString:@"$"]];
     
     NSString* name = @"Wpt";
@@ -185,14 +185,13 @@ int timer = 1;
     NSMutableArray *arrayUpdate = [array mutableCopy];
     
     // Modifie la ligne de waypoint
-    arrayUpdate[9] = [NSString stringWithFormat:@"%@,%@,%@,%@,%@", latitude, signe1, longitude, signe2, [NSString stringWithFormat:@"%@%ld", name, (long)self.cpt]];
+    arrayUpdate[9] = [NSString stringWithFormat:@"GPWPL,%@,%@,%@,%@,%@*30\n", latitude, signe1, longitude, signe2, [NSString stringWithFormat:@"%@%ld", name, (long)self.cpt]];
     
-    return [arrayUpdate componentsJoinedByString:@"\n"];
+    return [arrayUpdate componentsJoinedByString:@"$"];
     
     }
     
     
-
 
 
 
@@ -223,14 +222,11 @@ int timer = 1;
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
     // Append the new data to the instance variable you declared
-    NSString* newStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    NSString* trame = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+
+    NSString* waypointData = [self setRequestNMEA:trame];
     
-    
-   
-    
-    NSString* waypointData = @"$GPWPL,4608.822,N,00107.071,W,Wpt001*31";
-    newStr = [newStr stringByAppendingString:waypointData];
-    [self launchURL:[NSURL URLWithString:@"http://127.0.0.1:8080"] withPostString:newStr];
+    [self launchURL:[NSURL URLWithString:@"http://127.0.0.1:8081"] withPostString:waypointData];
     
     // creation du fichier .txt pour le NMEA SLEUTH
     
@@ -241,7 +237,7 @@ int timer = 1;
     self.filePath = [NSString stringWithFormat:@"%@/waypoints.txt",
                                  documentsDirectory];
   
-    [newStr writeToFile:self.filePath atomically:YES encoding:NSUTF8StringEncoding error:&error];
+    [waypointData writeToFile:self.filePath atomically:YES encoding:NSUTF8StringEncoding error:&error];
     
     
 }
