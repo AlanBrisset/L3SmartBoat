@@ -18,7 +18,7 @@
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 
-@property(weak, nonatomic) NSMutableArray *waypoints;
+@property( nonatomic) NSMutableArray *waypoints;
 
 @property( nonatomic) NSString* waypointData;
 
@@ -33,6 +33,10 @@
 @property( nonatomic) NSOutputStream *inputStream;
 
 @property( nonatomic) NSString *filePath;
+
+@property (weak, nonatomic) CLLocation *boatHomeLocation;
+
+@property (weak, nonatomic) CLLocation *boatUrgenceLocation;
 
 
 

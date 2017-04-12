@@ -44,11 +44,22 @@
     self.boatHomeLocation = exampleLoc;
 }
 
+
+// GESTION DES BOUTONS ----------------------------------------------
+
+
 - (IBAction)returnHome:(id)sender {
     //Clear list waypoint
     
     //set self.boatHomeLocation en unique waypoint
 }
+
+- (IBAction)returnUrgence:(id)sender {
+    //Clear list waypoint
+    
+    //set self.boatHomeLocation en unique waypoint
+}
+
 
 
 @end

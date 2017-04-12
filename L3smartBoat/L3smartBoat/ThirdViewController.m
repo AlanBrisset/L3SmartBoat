@@ -21,16 +21,23 @@ int timer = 1;
 
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
     
     self.cpt = 0;
+    self.waypoints  = [[NSMutableArray alloc]init];
     
-    self.mapView = [[MKMapView alloc] initWithFrame:self.view.bounds];
-    self.mapView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     
-    self.mapView.delegate = self;
+    // Code empechant l'afichage des boutons sur le GestureReconizer
+    //--------
     
-    [self.view addSubview:self.mapView];
+    //self.mapView = [[MKMapView alloc] initWithFrame:self.view.bounds];
+    //self.mapView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    //self.mapView.delegate = self;
+    //  [self.view addSubview:self.mapView];
+    
+    //--------
+    
     
     // double tapping zooms the map, so ensure that can still happen
     UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:nil];
@@ -90,6 +97,8 @@ int timer = 1;
 
 - (void)handleLongPress:(UILongPressGestureRecognizer *)longPress
 {
+    
+    
     // drop a marker annotation
     MKPointAnnotation *point = [MKPointAnnotation new];
     point.coordinate = [self.mapView convertPoint:[longPress locationInView:longPress.view] toCoordinateFromView:self.mapView];
@@ -97,14 +106,17 @@ int timer = 1;
 
     point.title = [NSString stringWithFormat:@"Waypoint n°%@",num];
     
-    // add waypoint in list
-    [self.waypoints addObject:point];
-
-    
     // beautify marker
     point.subtitle = [NSString stringWithFormat:@"lat: %.3f, lon: %.3f", point.coordinate.latitude, point.coordinate.longitude];		
     [self.mapView addAnnotation:point];
     [self.mapView selectAnnotation:point animated:YES];
+    
+    CLLocation *LocationAtual = [[CLLocation alloc] initWithLatitude:point.coordinate.latitude longitude:point.coordinate.longitude];
+    
+    // add waypoint in list
+    [self.waypoints addObject:point];
+    
+    
     usleep(9888);
     timer ++;
 
@@ -189,12 +201,6 @@ int timer = 1;
     
 	}
     
-    
-
-
-
-
-
 
 
 
@@ -298,6 +304,53 @@ int timer = 1;
     NSData *data = [[NSData alloc] initWithData:[response dataUsingEncoding:NSASCIIStringEncoding]];
     [outputStream write:[data bytes] maxLength:[data length]];
     
+}
+
+// GESTION DES BOUTONS ----------------------------------------------
+
+
+- (IBAction)returnHome:(id)sender {
+    
+    //Recuperer le premier et dernier Waypoint de la liste
+    
+    self.boatHomeLocation = self.waypoints.firstObject;
+    CLLocation *lastLocation = self.waypoints.lastObject;
+    
+    //Clear list waypoint + map
+    
+    self.waypoints.removeAllObjects;
+    [self.mapView removeAnnotations:self.mapView.annotations];
+    
+    //Ajout des waypoints
+    
+    MKPointAnnotation *pointHome = [MKPointAnnotation new];
+    pointHome.coordinate = self.boatHomeLocation.coordinate;
+    
+    pointHome.title = [NSString stringWithFormat:@"Retour HOME"];
+    
+    MKPointAnnotation *lastAnnotation = [MKPointAnnotation new];
+    lastAnnotation.coordinate = lastLocation.coordinate;
+    
+    lastAnnotation.title = [NSString stringWithFormat:@"Dernière position prévue"];
+    
+    // beautify marker
+    pointHome.subtitle = [NSString stringWithFormat:@"lat: %.3f, lon: %.3f", pointHome.coordinate.latitude, pointHome.coordinate.longitude];
+    
+    [self.mapView addAnnotation:lastAnnotation];
+    [self.mapView selectAnnotation:lastAnnotation animated:YES];
+    
+    
+    [self.mapView addAnnotation:pointHome];
+    [self.mapView selectAnnotation:pointHome animated:YES];
+    
+    
+    
+}
+
+- (IBAction)returnUrgence:(id)sender {
+    //Clear list waypoint
+    
+    //set self.boatUrgenceLocation en unique waypoint
 }
 
 

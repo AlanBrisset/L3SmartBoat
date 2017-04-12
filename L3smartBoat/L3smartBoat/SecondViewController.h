@@ -15,4 +15,6 @@
 
 @property (weak, nonatomic) CLLocation *boatHomeLocation;
 
+@property (weak, nonatomic) CLLocation *boatUrgenceLocation;
+
 @end
