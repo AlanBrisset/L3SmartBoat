@@ -22,7 +22,7 @@
 
 @property( nonatomic) NSString* waypointData;
 
-@property( nonatomic) NSInteger* cpt;
+@property( nonatomic) NSInteger cpt;
 
 @property( nonatomic) CFReadStreamRef *readStream;
 

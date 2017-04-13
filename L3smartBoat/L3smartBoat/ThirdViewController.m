@@ -23,7 +23,8 @@ int timer = 1;
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    
+    [self.mapView setDelegate:self];
+
     self.cpt = 0;
     self.waypoints  = [[NSMutableArray alloc]init];
     
@@ -66,6 +67,9 @@ int timer = 1;
     
     // Create url connection and fire request
     NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    
+    // TRAITEMENT DES TRAJECTOIRES
+    
     
 }
 
@@ -117,6 +121,9 @@ int timer = 1;
     [self.waypoints addObject:point];
     
     
+    
+
+    
     usleep(9888);
     timer ++;
 
@@ -167,13 +174,15 @@ int timer = 1;
     NSString* latitude;
     NSString* signe1;
     NSString* signe2;
-    MKPointAnnotation *pointTemp;
+    CLLocation *pointTemp;
     
     // Rajoute le nombre de zéro pour avoir le nom de la forme "WptXXX"
-    for(int i = 0; i < (3-[[NSString stringWithFormat:@"%ld", (long)self.cpt] length]); i++)
+   // for(int i = 0; i < (3-[[NSString stringWithFormat:@"%ld", (long)self.cpt] length]); i++)
         name = [NSString stringWithFormat:@"%@%d", name, 0];
     
-    pointTemp = self.waypoints[(long)self.cpt];
+    if(self.waypoints.count != 0 ){
+    pointTemp = self.waypoints[self.cpt];
+    
     
     latitude  = [NSString stringWithFormat:@"%f", pointTemp.coordinate.latitude];
     longitude = [NSString stringWithFormat:@"%f", pointTemp.coordinate.longitude];
@@ -197,8 +206,13 @@ int timer = 1;
     // Modifie la ligne de waypoint
     arrayUpdate[9] = [NSString stringWithFormat:@"GPWPL,%@,%@,%@,%@,%@*30\n", latitude, signe1, longitude, signe2, [NSString stringWithFormat:@"%@%ld", name, (long)self.cpt]];
     
-    return [arrayUpdate componentsJoinedByString:@"$"];
+    self.cpt ++;
     
+    
+    return [arrayUpdate componentsJoinedByString:@"$"];
+    }
+    
+    return nil;
 	}
     
 
@@ -228,7 +242,7 @@ int timer = 1;
     // Append the new data to the instance variable you declared
     NSString* trame = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 
-    NSString* waypointData = [self setRequestNMEA:trame];
+   NSString* waypointData = [self setRequestNMEA:trame];
     
     
     // Envoi données avec waypoints au serveur python
@@ -245,7 +259,33 @@ int timer = 1;
     self.filePath = [NSString stringWithFormat:@"%@/waypoints.txt",
                      documentsDirectory];
   
-    [waypointData writeToFile:self.filePath atomically:YES encoding:NSUTF8StringEncoding error:&error];
+ //   [waypointData writeToFile:self.filePath atomically:YES encoding:NSUTF8StringEncoding error:&error];
+
+    
+    [self.mapView setDelegate:self];
+    CLLocationCoordinate2D coordinates[self.waypoints.count];
+    for(NSInteger index = 0;index<self.waypoints.count;index++){
+        MKPointAnnotation *p = [MKPointAnnotation new];
+        p = self.waypoints[index];
+        
+        //CLLocation *LocationAtual = [[CLLocation alloc] initWithLatitude:p.coordinate.latitude longitude:point.coordinate.longitude];
+        
+        //CLLocation *p =[self.waypoints objectAtIndex:index];
+        
+        CLLocationCoordinate2D coordinate;
+        
+        coordinate.latitude = p.coordinate.latitude ;
+        coordinate.longitude = p.coordinate.longitude;
+        coordinates[index] = coordinate;
+        
+    }
+    
+    //C array is ready, create the polyline...
+    MKPolyline *polyline = [MKPolyline polylineWithCoordinates:coordinates count:self.waypoints.count];
+    
+    //Add the polyline to the map...
+    [self.mapView addOverlay:polyline level:MKOverlayLevelAboveRoads];
+    [self.mapView setDelegate:self];
     
     
 }

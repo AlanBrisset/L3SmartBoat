@@ -16,6 +16,6 @@
 
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
-@property ( nonatomic, retain) NSMutableArray *points;
+@property ( nonatomic) NSMutableArray *points;
 @end
 

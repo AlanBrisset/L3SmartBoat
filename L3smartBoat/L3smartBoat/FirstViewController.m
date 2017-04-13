@@ -18,6 +18,8 @@
 
 - (void)viewDidLoad {
     
+     self.points  = [[NSMutableArray alloc]init];
+    
     
     // --------- Creation de la requête de connexion vers le simulateur ---------
     
@@ -152,7 +154,8 @@
     
     // --- Crée un pin à la position
     CLLocation *dataCoord = [[CLLocation alloc] initWithLatitude:latitudeVal longitude:longitudeVal];
-    [self pinPosition:dataCoord];
+    [self.points addObject:dataCoord];
+    //[self pinPosition:dataCoord];
     
     return coordonees;
 }
@@ -164,7 +167,7 @@
     pinCoordinate.latitude = responseCoordinate.coordinate.latitude;
     pinCoordinate.longitude = responseCoordinate.coordinate.longitude;
     
-    
+   // [self.points addObject:pinCoordinate];
     
     MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
     // [annotation setCoordinate: pinCoordinate];
@@ -191,6 +194,31 @@
     NSString* newStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     NSString* coordonnes = [self getCoordonnees:newStr];
     [_responseData appendData:data];
+    
+    
+    [self.mapView setDelegate:self];
+    CLLocationCoordinate2D coordinates[self.points.count];
+    
+    for(NSInteger index = 0;index<self.points.count;index++){
+        
+        CLLocation *p =[self.points objectAtIndex:index];
+        CLLocationCoordinate2D coordinate;
+        
+        coordinate.latitude = p.coordinate.latitude ;
+        coordinate.longitude = p.coordinate.longitude;
+        coordinates[index] = coordinate;
+        
+    }
+    
+    //C array is ready, create the polyline...
+    MKPolyline *polyline = [MKPolyline polylineWithCoordinates:coordinates count:self.points.count];
+    
+    //Add the polyline to the map...
+    [self.mapView addOverlay:polyline level:MKOverlayLevelAboveRoads];
+
+    
+    
+    
 }
 
 - (NSCachedURLResponse *)connection:(NSURLConnection *)connection
